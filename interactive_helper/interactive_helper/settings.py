@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'django_filters',
     'helper',
     'users',
     'contacts',
@@ -56,6 +58,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'interactive_helper.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {

@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneView, PasswordResetConfirmView, \
     PasswordResetCompleteView
 
-from . import views
+from .import views
 from .forms import LoginForm, RegisterForm
 
 app_name = 'users'
