@@ -1,0 +1,54 @@
+{% extends 'helper/base.html' %}
+
+{% block content %}
+
+<form action="{% url 'contacts:add_contact' %}" method="POST" enctype="multipart/form-data">
+  
+  <div class="row">
+    <div>
+      <div class="card-body" style="width: 50%">
+        <h1>Add contact</h1>
+
+        {{form_contact.id}}
+
+        <div class="mb-3">
+          <label class="form-label">Fullname</label>
+          {{form_contact.fullname}}
+          <span>{{ form_contact.errors.fullname }}</span>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          {{form_contact.email}}
+          <span>{{ form_contact.errors.email }}</span>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Phone number</label>
+          {{form_contact.tel_num}}
+          <span>{{ form_contact.errors.tel_num }}</span>
+        </div>
+
+        <div class="mb-3">
+          <form>
+            <div class="form-group">
+              <label for="inputDate" class="form-label">Born Date</label>
+              {{ form_contact.born_date }}
+              <span>{{ form_contact.errors.born_date }}</span>
+            </div>
+          </form>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          {{form_contact.address}}
+          <span>{{ form_contact.errors.address }}</span>
+        </div>
+
+      <button type="submit" class="btn btn-secondary">Submit</button>
+      <button type="reset" class="btn btn-secondary">Reset</button>
+      </div>
+    </div>      
+  </div>
+
+</form> 
