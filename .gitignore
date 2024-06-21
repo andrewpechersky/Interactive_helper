@@ -153,6 +153,9 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+.interactive_helper\users\migrations\*
+.interactive_helper\notes\migrations\*
+.interactive_helper\helper\migrations\*
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
