@@ -2,52 +2,58 @@
 
 {% block content %}
 
-<form action="{% url 'contacts:add_contact' %}" method="POST" enctype="multipart/form-data">
+<form action="{% url 'add_contact' %}" method="POST" enctype="multipart/form-data">
   
   <div class="row">
     <div>
       <div class="card-body" style="width: 50%">
-        <h1>Add contact</h1>
+        <h1>Додати контакт</h1>
+        {% csrf_token %}
+        {{ contact_form.id }}
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Fullname
+                {{ contact_form.fullname }}
+            </label>
+            <input type="text" id="id_fullname" name="fullname">
+            <span>{{ contact_form.errors.fullname }}</span>
+          </div>
 
-        {{form_contact.id}}
+          <div class="mb-3">
+            <label class="form-label">Email
+                {{ contact_form.email }}
+            </label>
+            <input type="text" id="id_email" name="email">
+            <span>{{ contact_form.errors.email }}</span>
+          </div>
 
-        <div class="mb-3">
-          <label class="form-label">Fullname</label>
-          {{form_contact.fullname}}
-          <span>{{ form_contact.errors.fullname }}</span>
+          <div class="mb-3">
+            <label class="form-label">Phone number
+                {{ contact_form.tel_num }}
+            </label>
+            <input type="text" id="id_phone_number" name="phone_number">
+            <span>{{ contact_form.errors.phone_number }}</span>
+          </div>
+
+          <div class="mb-3">
+            <label for="inputDate" class="form-label">Born Date
+                {{ contact_form.born_date }}
+            </label>
+            <input type="text" id="id_born_date" name="born_date">
+            <span>{{ contact_form.errors.born_date }}</span>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Address
+                {{ contact_form.address }}
+            </label>
+          <input type="text" id="id_address" name="address">
+            <span>{{ contact_form.errors.address }}</span>
+          </div>
+        </form>
+        <button type="submit" class="btn btn-primary">Додати</button>
+        <button type="reset" class="btn btn-secondary">Зкинути</button>
         </div>
-
-        <div class="mb-3">
-          <label class="form-label">Email</label>
-          {{form_contact.email}}
-          <span>{{ form_contact.errors.email }}</span>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Phone number</label>
-          {{form_contact.tel_num}}
-          <span>{{ form_contact.errors.tel_num }}</span>
-        </div>
-
-        <div class="mb-3">
-          <form>
-            <div class="form-group">
-              <label for="inputDate" class="form-label">Born Date</label>
-              {{ form_contact.born_date }}
-              <span>{{ form_contact.errors.born_date }}</span>
-            </div>
-          </form>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Address</label>
-          {{form_contact.address}}
-          <span>{{ form_contact.errors.address }}</span>
-        </div>
-
-      <button type="submit" class="btn btn-secondary">Submit</button>
-      <button type="reset" class="btn btn-secondary">Reset</button>
-      </div>
     </div>      
   </div>
 

@@ -8,7 +8,7 @@ class Contact(models.Model):
     fullname  = models.CharField(unique=True, max_length=20)
     email     = models.EmailField(unique=True)
     tel_num   = models.IntegerField(unique=True)
-    born_date = models.DateField(null=False)
+    born_date = models.DateField(null=False, max_length=10)
     address   = models.TextField(null=False)
 
     def __str__(self):
