@@ -1,0 +1,16 @@
+{% extends 'helper/base.html' %}
+
+{% block content %}
+
+<head>
+    <title>Змінити контакт</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Змінити контакт{% else %}Новий контакт{% endif %}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зберегти</button>
+    </form>
+</body>
+</html>
