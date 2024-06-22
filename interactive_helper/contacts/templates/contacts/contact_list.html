@@ -11,8 +11,9 @@
     <a href="{% url 'add_contact' %}">Додати контакт</a>
     <ul>
     {% for contact in contacts %}
-        <li>{{ contact.name }} - <a href="{% url 'edit_contact' contact.pk %}">Edit</a> - <a href="{% url 'delete_contact' contact.pk %}">Видалити</a></li>
+        <li>{{ contact.name }} - <a href="{% url 'edit_contact' contact.pk %}">Змінити</a> - <a href="{% url 'delete_contact' contact.pk %}">Видалити</a></li>
     {% endfor %}
     </ul>
 </body>
 </html>
+{% endblock %}

@@ -22,7 +22,7 @@
             <div class="col-md-4">
                 <p>
                     {% if user.is_authenticated %}
-                    <a href="#" class="btn btn-primary">Contacts</a>
+                    <a href="{% url 'contact_list' %}" class="btn btn-primary">Contacts</a>
                     <a href="#" class="btn btn-primary">Notes</a>
                     <a href="#" class="btn btn-primary">Files</a>
                     <a href="{% url 'users:logout' %}" class="btn btn-primary">Logout</a>
