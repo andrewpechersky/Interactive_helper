@@ -3,8 +3,28 @@
 {% block content %}
 
 <div class="row">
+    <h2>Новини</h2>
 
-    <p>News</p>
+    {% if news_list %}
+        {% for news in news_list %}
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <img src="{{ news.img_url }}" alt="{{ news.title }}" style="width: 100%;  height: auto;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ news.title }}</h5>
+                            <p class="card-text">{{ news.description }}</p>
+                            <a href="{{ news.news_link }}" class="btn btn-primary">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Немає новин для відображення.</p>
+    {% endif %}
 
 </div>
 
