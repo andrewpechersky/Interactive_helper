@@ -175,3 +175,8 @@ cython_debug/
 .interactive_helper/contacts/migrations/*
 .interactive_helper/helper/migrations/*
 .uploads/*
+interactive_helper/contacts/migrations/__init__.py
+/interactive_helper/contacts/migrations
+/interactive_helper/contacts/migrations
+/interactive_helper/contacts/migrations
+/interactive_helper/files
