@@ -159,6 +159,7 @@ cython_debug/
 .interactive_helper\files\migrations\*
 .interactive_helper\notes\migrations\*
 .interactive_helper\helper\migrations\*
+.interactive_helper\contacts\migrations\*
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
