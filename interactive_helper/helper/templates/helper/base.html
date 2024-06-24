@@ -2,51 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive helper</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'helper/style.css' %}">
-    <title>Homework</title>
 </head>
 <body>
 
-    <div class="container">
-        <div class="row header-box pt-3 mb-3">
-            <div class="col-md-8">
-                <h1>
-                    <a href="/" style="text-decoration: none">Interactive helper</a>
-                </h1>
-            </div>
-            <div class="col-md-4">
-                <p>
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'contact_list' %}" class="btn btn-primary">Contacts</a>
-                    <a href="#" class="btn btn-primary">Notes</a>
-                    <a href="{% url 'files:file_list' %}" class="btn btn-primary">Files</a>
-                    <a href="{% url 'files:upload_file' %}" class="btn btn-primary">Upload</a>
-                    <a href="{% url 'users:logout' %}" class="btn btn-primary">Logout</a>
-
-                    {% else %}
-                    <a href="{% url 'users:signup' %}" class="btn btn-primary">SignUp</a>
-                    <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
-                    {% endif %}
-
-                </p>
-            </div>
+<div class="container">
+    <div class="row header-box pt-3 mb-3">
+        <div class="col-md-8">
+            <h1>
+                <a href="/" style="text-decoration: none">Interactive helper</a>
+            </h1>
         </div>
+        <div class="col-md-4">
+            <p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'contacts:contact_list' %}" class="btn btn-primary">Contacts</a>
+                <a href="#" class="btn btn-primary">Notes</a>
+                <a href="{% url 'files:file_list' %}" class="btn btn-primary">Files</a>
+                <a href="{% url 'files:upload_file' %}" class="btn btn-primary">Upload</a>
+                <a href="{% url 'users:logout' %}" class="btn btn-primary">Logout</a>
+                {% else %}
+                <a href="{% url 'users:signup' %}" class="btn btn-primary">SignUp</a>
+                <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
 
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
 
-    {% block content %} {% endblock %}
+</div>
+
+<footer class="footer">
+    <div class="container">
 
     </div>
-    <footer class="footer">
-        <div class="container">
-
-        </div>
-    </footer>
-
+</footer>
 
 </body>
 </html>

@@ -2,13 +2,16 @@
 
 {% block content %}
 
-   <div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Видалити контакт</h2>
-    <a href="{% url 'contact_list' %}" class="btn btn-danger btn-sm">Back</a>
-  </div>
-  <p>Ви впевнені? - видалити: {{ contact.name }}</p>
-  <form method="post" action="{% url 'delete_contact' contact.id %}">
+    <a href="{% url 'contacts:contact_list' %}" class="btn btn-danger btn-sm">Назад</a>
+</div>
+
+<p>Ви впевнені, що хочете видалити контакт: {{ contact.fullname }}?</p>
+
+<form method="post" action="{% url 'contacts:delete_contact' contact.pk %}">
     {% csrf_token %}
     <button type="submit" class="btn btn-danger btn-sm">Видалити</button>
-  </form>
+</form>
+
 {% endblock %}

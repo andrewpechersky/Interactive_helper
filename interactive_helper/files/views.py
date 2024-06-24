@@ -7,7 +7,7 @@ from .google_drive import get_drive_service
 from googleapiclient.http import MediaFileUpload
 from googleapiclient.errors import HttpError
 import os
-import magic
+import magic, psutil, time
 
 def get_category(mime_type):
     if mime_type.startswith('image'):
@@ -99,7 +99,18 @@ def upload_file(request):
             user_file.save()
 
             # Видалення файлу з локального сервера після завантаження
-            os.remove(file_path)
+            print(file_path,' deleted')
+            try:
+                # Надання всіх прав доступу до файлу
+                os.chmod(file_path, 0o777)
+                os.remove(file_path)
+                print(f"Файл {file_path} успішно видалено.")
+            except FileNotFoundError:
+                print(f"Файл {file_path} не знайдено.")
+            except PermissionError:
+                print(f"Немає дозволу на видалення файлу {file_path}.")
+            except Exception as e:
+                print(f"Помилка під час видалення файлу {file_path}: {e}")
 
             return redirect('files:file_list')
     else:

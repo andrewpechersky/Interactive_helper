@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.utils import timezone
+from datetime import timedelta
 from .forms import ContactForm
 from .models import Contact
 
@@ -9,9 +10,14 @@ from .models import Contact
 # Create your views here.
 @login_required
 def contact_list(request):
-    contacts = Contact.objects.all()
-    return render(request, 'contacts/contact_list.html', {'contacts': contacts})
+    query = request.GET.get('query')
 
+    if query:
+        contacts = Contact.objects.filter(fullname__icontains=query)
+    else:
+        contacts = Contact.objects.all()
+
+    return render(request, 'contacts/contact_list.html', {'contacts': contacts})
 
 @login_required
 def add_contact(request):
@@ -21,11 +27,11 @@ def add_contact(request):
         if contact_form.is_valid():
             contact_form.save()
             fullname = contact_form.cleaned_data['fullname']
-            messages.success(request, message=f'You´ve successfully added {fullname}')
-            return redirect(to='contacts:contact_list')
+            messages.success(request, f'You have successfully added {fullname}')
+            return redirect('contacts:contact_list')
         else:
-            messages.error(request, message="Error")
-    return render(request, 'contacts/add_contact.html', context={'form': contact_form})
+            messages.error(request, "Error")
+    return render(request, 'contacts/add_contact.html', {'form_contact': contact_form})
 
 
 @login_required
@@ -44,5 +50,17 @@ def edit_contact(request, pk):
 @login_required
 def delete_contact(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
-    contact.delete()
-    return render(request, 'contacts/delete_contact.html')
+    if request.method == "POST":
+        contact.delete()
+        messages.success(request, f'Contact {contact.fullname} has been deleted.')
+        return redirect('contacts:contact_list')
+    return render(request, 'contacts/delete_contact.html', {'contact': contact})
+
+
+@login_required
+def upcoming_birthdays_list(request):
+    days = int(request.GET.get('days', 7))
+    today = timezone.now()
+    future_date = today + timedelta(days=days)
+    upcoming_contacts = Contact.objects.filter(birth_date__day=future_date.day, birth_date__month=future_date.month)
+    return render(request, 'contacts/upcoming_birthdays_list.html', {'upcoming_contacts': upcoming_contacts, 'days': days})
