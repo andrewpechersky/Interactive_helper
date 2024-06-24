@@ -153,7 +153,10 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+
 .interactive_helper\users\migrations\*
+.interactive_helper\files\migrations\*
 .interactive_helper\notes\migrations\*
 .interactive_helper\helper\migrations\*
 
@@ -169,3 +172,4 @@ cython_debug/
 .interactive_helper/notes/migrations
 .interactive_helper/contacts/migrations
 .interactive_helper/helper/migrations
+.uploads/
