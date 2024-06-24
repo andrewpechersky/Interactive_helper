@@ -22,5 +22,6 @@ urlpatterns = [
     path("", include("helper.urls")),
     path("files/", include("files.urls")),
     path("users/", include("users.urls")),
-    path('contacts/', include("contacts.urls"))
+    path('contacts/', include("contacts.urls")),
+    path('notes/', include("notes.urls"))
 ]
