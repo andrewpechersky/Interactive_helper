@@ -1,27 +1,21 @@
-from django.forms import DateField, DateInput, HiddenInput, IntegerField, NumberInput, EmailInput, EmailField, ModelForm, CharField, TextInput, Select, ModelChoiceField, JSONField
-from .models import Contact, Note, Tag
+from django.forms import ModelForm, CharField, TextInput
+from .models import Tag, Note
 
 
-class ContactForm(ModelForm):
-    id        = IntegerField(widget=HiddenInput(), required=False)
-    fullname  = CharField(required=True, min_length=3, max_length=25, widget=TextInput(attrs={"class": "form-control"}))
-    email     = EmailField(required=True, min_length=8, max_length=20, widget=EmailInput(attrs={"class": "form-control"}))
-    tel_num   = IntegerField(required=True, widget=NumberInput(attrs={"class": "form-control"}))
-    born_date = DateField(required=True, widget=DateInput(attrs={"type": "date", "class": "form-control"}))
-    address   = CharField(required=True, max_length=50, widget=TextInput(attrs={"class": "form-control"}))
-
+class TagForm(ModelForm):
+    name = CharField(min_length=3, max_length=25, required=True, widget=TextInput())
 
     class Meta:
-        model  = Contact
-        fields = ['fullname', 'email', 'tel_num', 'born_date', 'address']
+        model = Tag
+        fields = ['name']
 
 
 class NoteForm(ModelForm):
-    id      = IntegerField(widget=HiddenInput(), required=False)
-    note    = CharField(max_length=1500, required=True, widget=TextInput(attrs={"class": "form-control"}))
-    contact = ModelChoiceField(queryset=Contact.objects.all(), required=True, widget=Select(attrs={"class": "form-control"}))
-    tags    = JSONField(max_length=500, required=False, widget=TextInput(attrs={"class": "form-control"}))
+
+    name = CharField(min_length=5, max_length=50, required=True, widget=TextInput())
+    description = CharField(min_length=10, max_length=150, required=True, widget=TextInput())
 
     class Meta:
         model = Note
-        fields = ['note', 'contact', 'tags']
+        fields = ['name', 'description']
+        exclude = ['tags']
