@@ -160,6 +160,7 @@ cython_debug/
 .interactive_helper\notes\migrations\*
 .interactive_helper\helper\migrations\*
 .interactive_helper\contacts\migrations\*
+.uploads\*
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
@@ -168,9 +169,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-.interactive_helper/files/migrations
-.interactive_helper/users/migrations
-.interactive_helper/notes/migrations
-.interactive_helper/contacts/migrations
-.interactive_helper/helper/migrations
-.uploads/
+.interactive_helper/files/migrations/*
+.interactive_helper/users/migrations/*
+.interactive_helper/notes/migrations/*
+.interactive_helper/contacts/migrations/*
+.interactive_helper/helper/migrations/*
+.uploads/*
