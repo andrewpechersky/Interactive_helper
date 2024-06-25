@@ -1,6 +1,9 @@
 from django.forms import DateField, DateInput, HiddenInput, IntegerField, EmailInput, EmailField, ModelForm, CharField, TextInput
 from .models import Contact
 from django import forms
+from datetime import date
+
+
 class ContactForm(ModelForm):
     id           = IntegerField(widget=HiddenInput(), required=False)
     fullname     = CharField(required=True, min_length=3, max_length=225, widget=TextInput(attrs={"class": "form-control"}))
@@ -13,5 +16,5 @@ class ContactForm(ModelForm):
         model  = Contact
         fields = ['fullname', 'email', 'phone_number', 'born_date', 'address']
         widgets = {
-            'birth_date': forms.DateInput(attrs={'type': 'date'}),
+            'born_date': forms.DateInput(attrs={'type': 'date'}),
         }

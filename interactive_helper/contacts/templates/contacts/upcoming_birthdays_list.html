@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Контакти з майбутніми днями народження</h1>
-    <a href="{% url 'contacts:add_contact' %}" class="btn btn-primary">Додати контакт</a>
+    <a href="{% url 'upcoming_birthdays_list %}" class="btn btn-primary">Пошук по даті народження</a>
     <br><br>
     <form method="GET" action="{% url 'contacts:upcoming_birthdays_list' %}">
         <label for="days">Кількість днів для майбутніх днів народження:</label>

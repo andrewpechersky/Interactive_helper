@@ -59,8 +59,23 @@ def delete_contact(request, pk):
 
 @login_required
 def upcoming_birthdays_list(request):
-    days = int(request.GET.get('days', 7))
+    days  = int(request.GET.get('days'))
     today = timezone.now()
     future_date = today + timedelta(days=days)
     upcoming_contacts = Contact.objects.filter(birth_date__day=future_date.day, birth_date__month=future_date.month)
-    return render(request, 'contacts/upcoming_birthdays_list.html', {'upcoming_contacts': upcoming_contacts, 'days': days})
+    return render(request, 'contacts/search_result.html', {'upcoming_contacts': upcoming_contacts, 'days': days})
+
+
+@login_required
+def search_by_birthday_range(request):
+    # if request.method == 'GET':
+    start_date = timezone.now()
+    end_date   = start_date + timedelta(request.GET.get('days'))
+    contacts   = Contact.objects.filter(birthday__range=[start_date, end_date])
+        # return render(request, 'search_result.html', {'results': results})
+    # else:
+    #     form = ContactForm(initial={
+    #         'start_date': datetime.today().date(),
+    #         'end_date': (datetime.today() + timedelta(days=30)).date()
+        # })
+    return render(request, 'search_result.html', {'contacts': contacts})

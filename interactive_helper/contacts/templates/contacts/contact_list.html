@@ -23,6 +23,14 @@
         <li>Немає контактів для відображення.</li>
     {% endfor %}
     </ul>
+
+    <h2>Пошук по даті народження</h2>
+    <form method="GET" action="{% url 'contacts:contact_list' %}">
+        {{ form.as_p }}
+        <input type="text" id="days" name="days" value="{{ days }}" min="1" max="365" placeholder="Введіть кількість днів для пошуку...">
+        <button type="submit" class="btn btn-secondary">Пошук</button>
+    </form>
+    
 </body>
 </html>
 {% endblock %}
