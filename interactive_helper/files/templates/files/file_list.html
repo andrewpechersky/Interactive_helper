@@ -1,0 +1,30 @@
+{% extends 'helper/base.html' %}
+
+{% block content %}
+<div>
+    <h2>Your Files</h2>
+    <form method="get">
+        <label for="category">Filter by category:</label>
+        <select name="category" id="category">
+            <option value="">All</option>
+            <option value="image">Image</option>
+            <option value="document">Document</option>
+            <option value="video">Video</option>
+            <option value="other">Other</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    <ul>
+        {% for file in files %}
+            <li>
+                {{ file.file_name }} - {{ file.category }} -
+                <a href="{{ file.download_url }}" target="_blank">Download</a>
+                <form action="{% url 'files:delete_file' file.file_id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
