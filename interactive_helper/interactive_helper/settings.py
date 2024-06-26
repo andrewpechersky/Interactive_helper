@@ -100,15 +100,9 @@ WSGI_APPLICATION = 'interactive_helper.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-<<<<<<< HEAD
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '654321',
-=======
         'NAME': 'assistant',
         'USER': 'postgres',
         'PASSWORD': 'pass1111',
->>>>>>> 5c0fd8c183086e956fdcce7b8b08f99ae901e3f2
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

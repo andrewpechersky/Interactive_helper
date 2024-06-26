@@ -10,20 +10,12 @@
     </nav>
 
     <form method="GET" action="{% url 'notes:index' %}" style="margin-bottom: 20px;">
-<<<<<<< HEAD
         <input type="text" name="q" placeholder="Search notes...">
-=======
-        <input type="text" name="q" placeholder="Search notes..." value="Search by note">
->>>>>>> 5c0fd8c183086e956fdcce7b8b08f99ae901e3f2
         <button type="submit">Search</button>
     </form>
 
     <form method="GET" action="{% url 'notes:index' %}" style="margin-bottom: 20px;">
-<<<<<<< HEAD
         <input type="text" name="tag" placeholder="Search by tags...">
-=======
-        <input type="text" name="tag" placeholder="Search by tags..." value="Search by tag">
->>>>>>> 5c0fd8c183086e956fdcce7b8b08f99ae901e3f2
         <button type="submit">Search</button>
     </form>
 
@@ -34,11 +26,7 @@
                 {% if not note.done %}
                 <a href="{% url 'notes:detail' note.id %}" role="button" class="outline"> <h2>{{ note.name }}</h2> </a>
                 <a href="{% url 'notes:set_done' note.id %}" role="button" class="btn btn-primary"> Mark Done </a>
-<<<<<<< HEAD
                 <a href="{% url 'notes:delete' note.id %}" role="button" class="btn btn-secondary"> Видалити нотатку </a>
-=======
-                <a href="{% url 'notes:delete' note.id %}" role="button" class="btn btn-secondary"> Delete note </a>
->>>>>>> 5c0fd8c183086e956fdcce7b8b08f99ae901e3f2
                 <a href="{% url 'notes:edit' note.id %}" role="button" class="btn btn-secondary"> Edit note </a>
                 {% else %}
                 <a href="{% url 'notes:detail' note.id %}" role="button" class="secondary"><s>{{ note.name }}</s></a>

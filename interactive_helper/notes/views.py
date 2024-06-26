@@ -9,11 +9,7 @@ from .forms import TagForm, NoteForm
 from .models import Tag, Note
 
 
-# Create your views here.
-<<<<<<< HEAD
 @login_required
-=======
->>>>>>> 5c0fd8c183086e956fdcce7b8b08f99ae901e3f2
 def main(request):
     query = request.GET.get('q')
     tag_query = request.GET.get('tag')
