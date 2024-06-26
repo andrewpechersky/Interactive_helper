@@ -17,12 +17,14 @@
     <ul>
         {% for file in files %}
             <li>
-                {{ file.file_name }} - {{ file.category }} -
-                <a href="{{ file.download_url }}" target="_blank">Download</a>
+                <div class="container-fluid">
+
+                <a href="{{ file.download_url }}" target="_blank">{{ file.file_name }}</a>
                 <form action="{% url 'files:delete_file' file.file_id %}" method="post" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit">Delete</button>
                 </form>
+                </div>
             </li>
         {% endfor %}
     </ul>
