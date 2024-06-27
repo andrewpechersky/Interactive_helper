@@ -178,3 +178,4 @@ cython_debug/
 interactive_helper/contacts/migrations/__init__.py
 /interactive_helper/contacts/migrations/*
 
+/interactive_helper/notes/migrations
