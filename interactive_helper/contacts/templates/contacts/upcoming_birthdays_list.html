@@ -1,30 +1,37 @@
-<!-- contacts/upcoming_birthdays_list.html -->
-
 {% extends 'helper/base.html' %}
 
 {% block content %}
-
 <html>
 <head>
     <title>Контакти з майбутніми днями народження</title>
 </head>
 <body>
     <h1>Контакти з майбутніми днями народження</h1>
-    <a href="{% url 'upcoming_birthdays_list %}" class="btn btn-primary">Пошук по даті народження</a>
-    <br><br>
+
+    <h2>Вкажіть кількість днів до дня народження</h2>
     <form method="GET" action="{% url 'contacts:upcoming_birthdays_list' %}">
-        <label for="days">Кількість днів для майбутніх днів народження:</label>
-        <input type="number" id="days" name="days" value="{{ days }}" min="1" max="365">
+        <input type="number" id="days" name="days" value="{{ days }}" min="1" max="365" placeholder="Введіть кількість днів для пошуку...">
         <button type="submit" class="btn btn-secondary">Показати</button>
     </form>
-    <ul>
-    {% for contact in upcoming_contacts %}
-        <li>{{ contact.fullname }} - Дата народження: {{ contact.birth_date|date:"d.m.Y" }} - <a href="{% url 'contacts:edit_contact' contact.pk %}" class="btn btn-warning">Змінити</a> - <a href="{% url 'contacts:delete_contact' contact.pk %}" class="btn btn-danger">Видалити</a></li>
-    {% empty %}
-        <li>Немає контактів з майбутніми днями народження.</li>
-    {% endfor %}
-    </ul>
+    
+    <hr>
+
+    {% if upcoming_birthdays %}
+        <h3>Контакти з майбутніми днями народження до {{ target_date|date:"d.m.Y" }}</h3>
+        
+        <ul>
+            {% for item in upcoming_birthdays %}
+                <li>
+                    {{ item.contact.fullname }} - Дата народження: {{ item.birthday_date|date:"d.m.Y" }}
+                    - <a href="{% url 'contacts:edit_contact' item.contact.pk %}" class="btn btn-warning">Змінити</a>
+                    - <a href="{% url 'contacts:delete_contact' item.contact.pk %}" class="btn btn-danger">Видалити</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>Немає контактів з майбутніми днями народження до {{ target_date|date:"d.m.Y" }}</h3>
+    {% endif %}
+    
 </body>
 </html>
-
 {% endblock %}

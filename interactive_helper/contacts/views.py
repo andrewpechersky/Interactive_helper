@@ -5,7 +5,7 @@ from django.utils import timezone
 from datetime import timedelta
 from .forms import ContactForm
 from .models import Contact
-
+from datetime import date, timedelta
 
 # Create your views here.
 @login_required
@@ -57,25 +57,43 @@ def delete_contact(request, pk):
     return render(request, 'contacts/delete_contact.html', {'contact': contact})
 
 
-@login_required
 def upcoming_birthdays_list(request):
-    days  = int(request.GET.get('days'))
-    today = timezone.now()
-    future_date = today + timedelta(days=days)
-    upcoming_contacts = Contact.objects.filter(birth_date__day=future_date.day, birth_date__month=future_date.month)
-    return render(request, 'contacts/search_result.html', {'upcoming_contacts': upcoming_contacts, 'days': days})
+    days = request.GET.get('days')
+    try:
+        days = int(days)
+    except (TypeError, ValueError):
+        days = 365  # За замовчуванням шукаємо на наступні 365 днів
 
+    # Отримуємо всі контакти з бази даних
+    contacts = Contact.objects.all()
 
-@login_required
-def search_by_birthday_range(request):
-    # if request.method == 'GET':
-    start_date = timezone.now()
-    end_date   = start_date + timedelta(request.GET.get('days'))
-    contacts   = Contact.objects.filter(birthday__range=[start_date, end_date])
-        # return render(request, 'search_result.html', {'results': results})
-    # else:
-    #     form = ContactForm(initial={
-    #         'start_date': datetime.today().date(),
-    #         'end_date': (datetime.today() + timedelta(days=30)).date()
-        # })
-    return render(request, 'search_result.html', {'contacts': contacts})
+    # Отримуємо сьогоднішню дату
+    today = date.today()
+
+    # Визначаємо цільну дату для пошуку
+    target_date = today + timedelta(days=days)
+
+    # Ініціалізуємо порожній список для майбутніх днів народження з даними контактів
+    upcoming_birthdays = []
+
+    # Збираємо всі майбутні дні народження з даними контактів
+    for contact in contacts:
+        if contact.born_date:
+            # Визначаємо дату народження для поточного року
+            birthday_this_year = date(today.year, contact.born_date.month, contact.born_date.day)
+
+            # Перевіряємо, чи дата народження цього року ще не минула і входить в потрібний період
+            if today <= birthday_this_year <= target_date:
+                upcoming_birthdays.append({
+                    'contact': contact,
+                    'birthday_date': birthday_this_year,
+                })
+
+    # Сортуємо список за датами народжень
+    upcoming_birthdays.sort(key=lambda x: x['birthday_date'])
+
+    return render(request, 'contacts/upcoming_birthdays_list.html', {
+        'upcoming_birthdays': upcoming_birthdays,
+        'days': days,
+        'target_date': target_date,
+    })
