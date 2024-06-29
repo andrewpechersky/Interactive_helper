@@ -3,30 +3,47 @@
 {% block content %}
 <div>
     <h2>Your Files</h2>
-    <form method="get">
+    <form method="get" style="display:inline;">
         <label for="category">Filter by category:</label>
-        <select name="category" id="category">
+        <select name="category" id="category" class="form-select form-select-lg mb-3">
             <option value="">All</option>
             <option value="image">Image</option>
             <option value="document">Document</option>
             <option value="video">Video</option>
             <option value="other">Other</option>
         </select>
-        <button type="submit">Filter</button>
+        <button type="submit" class="btn btn-success">Filter</button>
     </form>
-    <ul>
-        {% for file in files %}
-            <li>
-                <div class="container-fluid">
 
-                <a href="{{ file.download_url }}" target="_blank">{{ file.file_name }}</a>
-                <form action="{% url 'files:delete_file' file.file_id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit">Delete</button>
-                </form>
-                </div>
-            </li>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">Link</th>
+              <th scope="col"></th>
+            </tr>
+        </thead>
+
+        {% for file in files %}
+                  <tbody>
+                    <tr>
+                      <td><a href="{{ file.download_url }}" target="_blank" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{ file.file_name }} </a></td>
+                      <td>
+                            <form action="{% url 'files:delete_file' file.file_id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                      </td>
+                    </tr>
+              </tbody>
+
+
+
+
+
+
+
+
         {% endfor %}
-    </ul>
+    </table>
 </div>
 {% endblock %}

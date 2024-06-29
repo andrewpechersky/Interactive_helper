@@ -20,15 +20,17 @@
 
     <ul>
     {% for contact in contacts %}
-        <li>
-            <strong>ПІБ:</strong> {{ contact.fullname }}<br>
-            <strong>Email:</strong> {{ contact.email }}<br>
-            <strong>Телефон:</strong> {{ contact.phone_number }}<br>
-            <strong>Дата народження:</strong> {{ contact.born_date|date:"d.m.Y" }}<br>
-            <!-- Додайте інші поля, які хочете відобразити -->
-            <a href="{% url 'contacts:edit_contact' contact.pk %}" class="btn btn-warning">Змінити</a> 
-            <a href="{% url 'contacts:delete_contact' contact.pk %}" class="btn btn-danger">Видалити</a>
-        </li>
+        <div class="card mb-3">
+            <div class="card-body">
+                <strong>ПІБ:</strong> {{ contact.fullname }}<br>
+                <strong>Email:</strong> {{ contact.email }}<br>
+                <strong>Телефон:</strong> {{ contact.phone_number }}<br>
+                <strong>Дата народження:</strong> {{ contact.born_date|date:"d.m.Y" }}<br>
+                <!-- Додайте інші поля, які хочете відобразити -->
+                <a href="{% url 'contacts:edit_contact' contact.pk %}" class="btn btn-warning">Змінити</a>
+                <a href="{% url 'contacts:delete_contact' contact.pk %}" class="btn btn-danger">Видалити</a>
+            </div>
+        </div>
     {% empty %}
         <li>Немає контактів для відображення.</li>
     {% endfor %}

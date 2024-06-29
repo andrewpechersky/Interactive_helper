@@ -3,11 +3,11 @@
 {% block content %}
 <div>
     <h2>Upload File</h2>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="btn btn-info">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="file" name="file">
-        <button type="submit">Upload</button>
+        <input type="file" name="file" class="btn btn-info">
+        <button type="submit" class="btn btn-success">Upload</button>
     </form>
 </div>
 {% endblock %}
