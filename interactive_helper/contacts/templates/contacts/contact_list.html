@@ -14,11 +14,18 @@
 
     <!-- Форма для пошуку контактів -->
     <form method="GET" action="{% url 'contacts:contact_list' %}">
-        <input type="text"  name="query" placeholder="Введіть ім'я для пошуку...">
-        <button type="submit" class="btn btn-secondary">Знайти</button>
+        <div class="row g-3">
+                  <div class="col-auto">
+                      <input type="text" class="form-control" name="query" placeholder="Введіть ім'я для пошуку...">
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-secondary mb-3">Знайти</button>
+                  </div>
+        </div>
+
     </form>
 
-    <ul>
+
     {% for contact in contacts %}
         <div class="card mb-3">
             <div class="card-body">
@@ -27,20 +34,26 @@
                 <strong>Телефон:</strong> {{ contact.phone_number }}<br>
                 <strong>Дата народження:</strong> {{ contact.born_date|date:"d.m.Y" }}<br>
                 <!-- Додайте інші поля, які хочете відобразити -->
-                <a href="{% url 'contacts:edit_contact' contact.pk %}" class="btn btn-warning">Змінити</a>
-                <a href="{% url 'contacts:delete_contact' contact.pk %}" class="btn btn-danger">Видалити</a>
+                <a href="{% url 'contacts:edit_contact' contact.pk %}" class="btn btn-warning mt-3">Змінити</a>
+                <a href="{% url 'contacts:delete_contact' contact.pk %}" class="btn btn-danger mt-3">Видалити</a>
             </div>
         </div>
     {% empty %}
-        <li>Немає контактів для відображення.</li>
+        <p>Немає контактів для відображення.</p>
     {% endfor %}
-    </ul>
+
 
     <h2>Пошук по даті народження</h2>
     <form method="GET" action="{% url 'contacts:contact_list' %}">
         {{ form.as_p }}
-        <input type="text" id="days" name="days" value="{{ days }}" min="1" max="365" placeholder="Введіть кількість днів для пошуку...">
-        <button type="submit" class="btn btn-secondary">Пошук</button>
+        <div class="row g-3">
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="days" name="days" value="{{ days }}" min="1" max="365" placeholder="Введіть кількість днів для пошуку...">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-secondary">Пошук</button>
+                </div>
+        </div>
     </form>
     
 </body>

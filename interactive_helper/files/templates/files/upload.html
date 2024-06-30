@@ -2,7 +2,7 @@
 
 {% block content %}
 <div>
-    <h2>Upload File</h2>
+    <h2>Завантажити файл</h2>
         <form method="post" enctype="multipart/form-data" class="row g-3">
             {% csrf_token %}
             {{ form.as_p }}
@@ -10,7 +10,7 @@
                     <input type="file" name="file" class="form-control">
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-success">Upload</button>
+                    <button type="submit" class="btn btn-success">Завантажити</button>
                 </div>
         </form>
 </div>

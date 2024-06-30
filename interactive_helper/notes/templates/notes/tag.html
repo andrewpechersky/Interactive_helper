@@ -2,7 +2,7 @@
 
 {% block content %}
 <main class="container">
-    <h1>Add Tag</h1>
+    <h1>Додавання тегу</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
@@ -13,18 +13,26 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <button type="submit">Add Tag</button>
+        <button type="submit" class="btn btn-success">Додати тег</button>
     </form>
-    <h2>Already created tags</h2>
+    <h2>Існуючі теги</h2>
     {% if tags %}
-    <ul>
+
         {% for tag in tags %}
-        <li>
-            {{ tag.name }}
-            <a href="{% url 'notes:delete_tag' tag.id %}"  >Delete</a>
-        </li>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-auto">
+                        {{ tag.name }}
+                    </div>
+                        <div class="col-auto ">
+                        <a href="{% url 'notes:delete_tag' tag.id %}" class="btn btn-danger btn-sm" >Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+
     {% else %}
     <p>You have no tags yet.</p>
     {% endif %}
