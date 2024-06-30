@@ -38,4 +38,8 @@ Interactive Helper - це Django веб-додаток, що дозволяє к
    python manage.py createsuperuser
 7. Запуск сервера:
    ```bash
+<<<<<<< HEAD
    python manage.py runserver 127.0.0.1:8000
+=======
+   python manage.py runserver 127.0.0.1:8000
+>>>>>>> 1aceaee0534f4fbde478e24fb523cb7fc8b57c82

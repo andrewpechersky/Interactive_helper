@@ -1,3 +1,4 @@
+import django.db.utils
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
@@ -69,9 +70,13 @@ def note(request):
     if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
-            new_note = form.save(commit=False)
-            new_note.user = request.user
-            new_note.save()
+            try:
+                new_note = form.save(commit=False)
+                new_note.user = request.user
+                new_note.save()
+            except django.db.utils.IntegrityError:
+                messages.error(request, message="Заголовок має бути унікальним!")
+                return redirect(to='notes:add_notes')
             choice_tags = Tag.objects.filter(name__in=request.POST.getlist('tags'), user=request.user)
             for tag in choice_tags.iterator():
                 new_note.tags.add(tag)
