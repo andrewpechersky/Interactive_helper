@@ -17,7 +17,7 @@ class Tag(models.Model):
 
 
 class Note(models.Model):
-    name = models.CharField(max_length=50, null=False)
+    name = models.CharField(max_length=50, null=False, unique=True)
     description = models.CharField(max_length=150, null=False)
     done = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)

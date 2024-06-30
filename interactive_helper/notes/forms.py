@@ -12,8 +12,8 @@ class TagForm(ModelForm):
 
 class NoteForm(ModelForm):
 
-    name = CharField(min_length=5, max_length=50, required=True, widget=TextInput())
-    description = CharField(min_length=10, max_length=150, required=True, widget=TextInput())
+    name = CharField(min_length=3, max_length=50, required=True, widget=TextInput())
+    description = CharField(min_length=5, max_length=150, required=True, widget=TextInput())
 
     class Meta:
         model = Note
