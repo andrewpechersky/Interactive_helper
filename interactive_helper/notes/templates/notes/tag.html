@@ -3,7 +3,7 @@
 {% block content %}
 <main class="container">
     <h1>Додавання тегу</h1>
-    <form method="POST">
+    <form method="POST" class="form-control">
         {% csrf_token %}
         {{ form.as_p }}
         {% if messages %}
