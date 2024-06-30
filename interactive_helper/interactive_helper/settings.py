@@ -14,8 +14,6 @@ from pathlib import Path
 from decouple import config
 import environ
 
-env = environ.Env()
-environ.Env.read_env()
 
 # Завантаження змінних середовища
 CLIENT_ID = config('CLIENT_ID')
