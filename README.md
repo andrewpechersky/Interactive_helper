@@ -17,7 +17,7 @@ Interactive Helper - це Django веб-додаток, що дозволяє к
    ```bash
    pip install -r requirements.txt
 4. Налаштування змінних середовища:
-   Створіть файл .env в кореневій директорії проекту і додайте наступні змінні:
+Створіть файл .env в кореневій директорії проекту і додайте наступні змінні:
    ```bash
    CLIENT_ID=ваш_client_id
    CLIENT_SECRET=ваш_client_secret
