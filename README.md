@@ -19,8 +19,13 @@ Interactive Helper - це Django веб-додаток, що дозволяє к
 4. Налаштування змінних середовища:
 Створіть файл .env в кореневій директорії проекту і додайте наступні змінні:
    ```bash
-   CLIENT_ID=ваш_client_id
-   CLIENT_SECRET=ваш_client_secret
+   EMAIL_HOST=smtp сервер
+   EMAIL_PORT=порт серверу
+   EMAIL_HOST_USER=імейл@мейл.ком
+   EMAIL_HOST_PASSWORD=пароль
+   SECRET_KEY=ваш_client_secret
+   CLIENT_ID=ваш_client_id google
+   CLIENT_SECRET=ваш_client_secret google
    TOKEN_URI=https://oauth2.googleapis.com/token
 5. Створення та міграція бази даних:
    ```bash
