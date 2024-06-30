@@ -4,9 +4,8 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
-from dotenv import load_dotenv
+from decouple import config
 
-load_dotenv()
 
 SCOPES = ['https://www.googleapis.com/auth/drive.file']
 
@@ -20,10 +19,10 @@ def get_drive_service():
         else:
             flow = InstalledAppFlow.from_client_config({
                 "installed": {
-                    "client_id": os.getenv('CLIENT_ID'),
-                    "client_secret": os.getenv('CLIENT_SECRET'),
+                    "client_id": config('CLIENT_ID'),
+                    "client_secret": config('CLIENT_SECRET'),
                     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                    "token_uri": os.getenv('TOKEN_URI'),
+                    "token_uri": config('TOKEN_URI'),
                     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
                     "redirect_uris": ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"]
                 }
