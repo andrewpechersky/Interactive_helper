@@ -9,3 +9,7 @@ Interactive Helper - це Django веб-додаток, що дозволяє к
    ```bash
    git clone https://github.com/ваш-юзернейм/interactive_helper.git
    cd interactive_helper
+2. Створення та активація віртуального середовища:
+    ```bash
+   python -m venv env
+   source env/bin/activate # для Windows: .\env\Scripts\activate
