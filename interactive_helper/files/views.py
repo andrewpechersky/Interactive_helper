@@ -128,12 +128,3 @@ def file_list(request):
     for file in files:
         file.download_url = get_file_download_link(file.file_id)
     return render(request, 'files/file_list.html', {'files': files})
-
-
-"""<ul>
-        {% for file in files %}
-            <li>
-                {{ file.file_name }} - {{ file.category }} - <a href="{{ file.download_url }}" target="_blank">Download</a>
-            </li>
-        {% endfor %}
-    </ul>"""

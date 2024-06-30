@@ -14,7 +14,7 @@
     <div class="row header-box pt-3 mb-3">
         <div class="col-md-8">
             <h1>
-                <a href="/" style="text-decoration: none">Interactive helper</a>
+                <a href="/" style="text-decoration: none">Персональний помічник</a>
             </h1>
         </div>
         <div class="col-md-4">
@@ -24,10 +24,10 @@
                 <a href="{% url 'notes:index' %}" class="btn btn-primary">Нотатки</a>
                 <a href="{% url 'files:file_list' %}" class="btn btn-primary">Файли</a>
                 <a href="{% url 'files:upload_file' %}" class="btn btn-primary">Завантажити</a>
-                <a href="{% url 'users:logout' %}" class="btn btn-primary">Logout</a>
+                <a href="{% url 'users:logout' %}" class="btn btn-primary">Вийти</a>
                 {% else %}
-                <a href="{% url 'users:signup' %}" class="btn btn-primary">SignUp</a>
-                <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'users:signup' %}" class="btn btn-primary">Реєстрація</a>
+                <a href="{% url 'users:login' %}" class="btn btn-primary">Ввійти</a>
                 {% endif %}
             </p>
         </div>

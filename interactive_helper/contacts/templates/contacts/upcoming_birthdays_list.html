@@ -19,15 +19,16 @@
     {% if upcoming_birthdays %}
         <h3>Контакти з майбутніми днями народження до {{ target_date|date:"d.m.Y" }}</h3>
         
-        <ul>
+
             {% for item in upcoming_birthdays %}
-                <li>
-                    {{ item.contact.fullname }} - Дата народження: {{ item.birthday_date|date:"d.m.Y" }}
-                    - <a href="{% url 'contacts:edit_contact' item.contact.pk %}" class="btn btn-warning">Змінити</a>
-                    - <a href="{% url 'contacts:delete_contact' item.contact.pk %}" class="btn btn-danger">Видалити</a>
-                </li>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        {{ item.contact.fullname }} - Дата народження: {{ item.birthday_date|date:"d.m.Y" }}
+                        - <a href="{% url 'contacts:edit_contact' item.contact.pk %}" class="btn btn-warning">Змінити</a>
+                        - <a href="{% url 'contacts:delete_contact' item.contact.pk %}" class="btn btn-danger">Видалити</a>
+                        </div>
+                </div>
             {% endfor %}
-        </ul>
     {% else %}
         <h3>Немає контактів з майбутніми днями народження до {{ target_date|date:"d.m.Y" }}</h3>
     {% endif %}
