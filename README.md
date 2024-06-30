@@ -24,14 +24,14 @@ Interactive Helper - це Django веб-додаток, що дозволяє к
    TOKEN_URI=https://oauth2.googleapis.com/token
 5. Створення та міграція бази даних:
    ```bash
+   python manage.py makemigrations files
+   python manage.py makemigrations contacts
+   python manage.py makemigrations notes
    python manage.py migrate
-   python manage.py notes migrate
-   python manage.py contacts migrate
 6. Створення суперкористувача для адміністрування:
    ```bash
    python manage.py createsuperuser
 7. Запуск сервера:
    ```bash
-   python manage.py runserver
-
+   python manage.py runserver 127.0.0.1:8000
 
