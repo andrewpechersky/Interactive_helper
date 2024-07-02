@@ -88,26 +88,12 @@ WSGI_APPLICATION = 'interactive_helper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'djongo',
-#        'NAME': 'db_helper',
-#        #'ENFORCE_SCHEMA': False,
-#        'CLIENT': {
-#            'host': 'mongodb+srv://users:S}{hZmXV9QbFl~u9@cluster0.av2rj1b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-#        }
-#    }
-#}
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'assistant',
+        'NAME': config("NAME"),
         'USER': 'postgres',
-        'PASSWORD': 'pass1111',
+        'PASSWORD': config('PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
