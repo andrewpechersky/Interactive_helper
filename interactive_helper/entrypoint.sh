@@ -4,4 +4,4 @@
 python manage.py collectstatic --noinput
 
 # Запуск сервера
-gunicorn contacts_project.wsgi:application --bind 0.0.0.0:$PORT
+gunicorn interactive_helper.wsgi:application --bind 0.0.0.0:$PORT
